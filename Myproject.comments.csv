@@ -1,0 +1,9 @@
+_id,imdbId,body,_class
+67f2c9ac45dab44a29e63324,tt1630029,this movie is amazing.,com.myproject.demo.models.Review
+67f2ca2445dab44a29e63325,tt1630029,that good!!!,com.myproject.demo.models.Review
+67f2cb1245dab44a29e63329,tt1630029,so lovely,com.myproject.demo.models.Review
+67f2cb4a45dab44a29e6332a,tt3915174,good,com.myproject.demo.models.Review
+67f2ccf645dab44a29e6332b,tt1630029,chat quá,com.myproject.demo.models.Review
+67f3b2ad6a0f0114072c5270,tt1630029,hay,com.myproject.demo.models.Review
+67f7d869b1ae541fb21d2823,tt1630029,tuyệt,com.myproject.demo.models.Review
+67f936accebf005444eb459f,tt0499549,oke,com.myproject.demo.models.Review

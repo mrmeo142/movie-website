@@ -1,0 +1,8 @@
+_id,name,movies[0],movies[1],movies[2],movies[3],movies[4],movies[5],nationality,birthDate,avatar,_class
+68165955619cea3a54d79e43,Letitia Wright,tt9114286,tt1825683,,,,,Guyanese-British,31/10/1993,https://image.tmdb.org/t/p/original/f7PevpEeBqwzACPhoZ8K3ktrKvE.jpg,com.myproject.demo.models.Actor
+68165a25619cea3a54d79e44,Shameik Moore,tt4633694,tt9362722,,,,,America,4/5/1995,https://image.tmdb.org/t/p/original/4aNOTCa6q2HKTgyJj14BqDpVClC.jpg,com.myproject.demo.models.Actor
+68165a9d619cea3a54d79e45,Chris Evans,tt4154756,tt4154796,,,,,America,13/6/1981,https://image.tmdb.org/t/p/original/jEzGktEMdEkQKemPVR0YGlIYEVl.jpg,com.myproject.demo.models.Actor
+68165aff619cea3a54d79e46,Robert Downey Jr.,tt4154756,tt4154796,,,,,America,4/4/1965,https://image.tmdb.org/t/p/original/1YjdSym1jTG7xjHSI0yGGWEsw5i.jpg,com.myproject.demo.models.Actor
+68165bc5619cea3a54d79e47,Lauren German,tt4052886s1,tt4052886s2,tt4052886s3,tt4052886s4,tt4052886s5,tt4052886s6,"Huntington Beach, California",29/11/1978,https://image.tmdb.org/t/p/original/wlfew4J9O6fOhizjjQtqUeT36Jb.jpg,com.myproject.demo.models.Actor
+68165c83619cea3a54d79e48,Tom Ellis,tt4052886s1,tt4052886s2,tt4052886s3,tt4052886s4,tt4052886s5,tt4052886s6,"Cardiff, Wales",17/11/1978,https://image.tmdb.org/t/p/original/sJkxqJfSgcwussMeywxyrnYxVX.jpg,com.myproject.demo.models.Actor
+68165ceb619cea3a54d79e49,David Giuntoli,tt1830617s1,tt1830617s2,tt1830617s3,tt1830617s4,tt1830617s5,tt1830617s6,America,18/6/1980,https://image.tmdb.org/t/p/original/xxtB8TfKLMw9Utx5v2b3Z0nu5VL.jpg,com.myproject.demo.models.Actor

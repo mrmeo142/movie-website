@@ -1,0 +1,5 @@
+_id,username,password,_class
+6814de51a1fa550ad78241a4,toantit,123456,com.myproject.demo.models.Admin
+6815dc67990ecb62756216f9,aquan,123456,com.myproject.demo.models.Admin
+6815f21afc93dd2d67225cfb,hnguyen,123456,com.myproject.demo.models.Admin
+68162015619cea3a54d79e26,ltphong,123456,com.myproject.demo.models.Admin
