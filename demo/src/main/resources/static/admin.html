@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Trang Quản Lý Web Xem Phim</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Admin Panel</h2>
+            </div>
+            <ul class="nav">
+                <li class="active" data-tab="dashboard">
+                    <a href="#"><i class="fas fa-chart-line"></i> Quản lý diễn viên</a>
+                </li>
+                <li data-tab="movies">
+                    <a href="#"><i class="fas fa-film"></i> Quản lý phim</a>
+                </li>
+                <li data-tab="users">
+                    <a href="#"><i class="fas fa-users"></i> Quản lý người dùng</a>
+                </li>
+                <li>
+                    <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="user-info">
+                    <span>Admin</span>
+                    <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+                </div>
+            </div>
+
+            <!-- Actor Management Section -->
+            <div class="content-section active" id="dashboard">
+                <h2>Thông tin diễn viên</h2>
+                <div class="actor" style="margin-bottom: 20px";>
+                  <input type="text" id="actorSearchInput" placeholder="Tìm kiếm...">
+                  <button id="searchActorBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="action-buttons">
+                    <button class="addactor-btn">Thêm actor mới</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên diễn viên</th>
+                                <th>Quốc gia</th>
+                                <th>Ngày sinh</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "actors">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination1" class="pagination-container"></div>
+            </div>
+
+            <!-- Movies Management Section -->
+            <div class="content-section" id="movies">
+                <h2>Quản lý phim</h2>
+                <div class="search-bar" style="margin-bottom: 20px";>
+                  <input type="text" placeholder="Tìm kiếm...">
+                  <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="action-buttons">
+                    <button class="add-btn">Thêm phim mới</button>
+                    <div class="filter-buttons">
+                        <div class="filter-dropdown">
+                            <button class="filter-btn"><i class="fas fa-filter"></i> Loại phim</button>
+                            <div class="dropdown-content">
+                                <a href="#" data-filter-type="movie-type" data-value="all">Tất cả</a>
+                            </div>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="filter-btn"><i class="fas fa-filter"></i> Thể loại</button>
+                            <div class="dropdown-content">
+                                <a href="#" data-filter-type="genre" data-value="all">Tất cả</a>
+                            </div>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="filter-btn"><i class="fas fa-filter"></i> Năm phát hành</button>
+                            <div class="dropdown-content">
+                                <a href="#" data-filter-type="year" data-value="all">Tất cả</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên phim</th>
+                                <th>Thể loại</th>
+                                <th>Năm phát hành</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination">
+                  <!-- Nút phân trang sẽ inject vào đây -->
+                </div>
+            </div>
+
+            <!-- Users Management Section -->
+            <div class="content-section" id="users">
+                <h2>Thông tin người dùng</h2>
+                <div class="admin" style="margin-bottom: 20px";>
+                  <input type="text" id="adminSearchInput" placeholder="Tìm kiếm...">
+                  <button id="searchAdminBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="action-buttons">
+                    <button class="addadmin-btn">Thêm user mới</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>username</th>
+                                <th>password</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "admins">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination2" class="pagination-container"></div>
+            </div>
+
+    <!-- Modal Thêm Diễn viên Mới -->
+    <div class="modal" id="addActorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm diễn viên Mới</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addActorForm">
+                    <div class="form-group">
+                        <label for="username">Tên diễn viên:</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="nationality">Quốc gia:</label>
+                        <input type="text" id="nationality" name="nationality">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">Ngày sinh:</label>
+                        <input type="text" id="birthDate" name="birthDate">
+                    </div> 
+                    <div class="form-group">
+                        <label for="avatar">Avatar:</label>
+                        <input type="text" id="avatar" name="avatar">
+                    </div>                 
+                    <div class="form-actions">
+                        <button id="addActor" class="submit-btn">Lưu</button>
+                        <button type="button" class="cancel-btn">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Chỉnh sửa Thông tin Diễn viên -->
+    <div class="modal" id="editActorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chỉnh sửa Thông tin Diễn viên</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editActorForm">
+                    <input type="hidden" id="editActorId"> <!-- ID ẩn dùng để gửi PUT -->
+
+                    <div class="form-group">
+                        <label for="editUsername">Tên diễn viên:</label>
+                        <input type="text" id="editUsername" name="editUsername">
+                    </div>
+                    <div class="form-group">
+                        <label for="editNationality">Quốc gia:</label>
+                        <input type="text" id="editNationality" name="editNationality">
+                    </div>
+                    <div class="form-group">
+                        <label for="editBirthDate">Ngày sinh:</label>
+                        <input type="text" id="editBirthDate" name="editBirthDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="editAvatar">Avatar:</label>
+                        <input type="text" id="editAvatar" name="editAvatar">
+                    </div> 
+                    <div class="form-group">
+                        <label for="editMovies">IMDb ID các phim:</label>
+                        <textarea type="text" id="editMovies" name="editMovies" row="3" placeholder="tt1234567"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button id="saveEditActor" class="submit-btn">Lưu thay đổi</button>
+                        <button type="button" class="cancel-btn">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Chỉnh sửa User -->
+    <div class="modal" id="editAdminModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chỉnh sửa thông tin người dùng</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editAdminForm">
+                    <input type="hidden" id="editAdminId">
+
+                    <div class="form-group">
+                        <label for="editName">Tên người dùng:</label>
+                        <input type="text" id="editName" name="editName">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPassword">Mật khẩu mới:</label>
+                        <input type="password" id="editPassword" name="editPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Xác nhận mật khẩu:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword">
+                    </div>
+                    <div class="form-actions">
+                        <button id="saveEditAdmin" class="submit-btn">Lưu thay đổi</button>
+                        <button type="button" class="cancel-btn">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Thêm Người Dùng Mới -->
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm User Mới</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label for="Username">Tên người dùng:</label>
+                        <input type="text" id="Username" name="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Xác nhận mật khẩu:</label>
+                        <input type="password" id="confirmpassword" name="confirmpassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button id="addadmin" class="submit-btn">Lưu</button>
+                        <button type="button" class="cancel-btn">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Thêm Phim Mới -->
+    <div class="modal" id="addMovieModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm Phim Mới</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+              <form id="addMovieForm">
+                  <div class="form-group">
+                      <label for="imdbId">IMDB ID:</label>
+                      <input type="text" id="imdbId" name="imdbId" placeholder="Ví dụ: tt1234567">
+                      <small>Nhập mã IMDB của phim (không bắt buộc).</small>
+                  </div>
+                  <div class="form-group">
+                      <label for="title">Tên phim:</label>
+                      <input type="text" id="title" name="title" placeholder="Ví dụ: Avengers: Endgame">
+                      <small>Nhập tiêu đề phim (không bắt buộc).</small>
+                  </div>
+                  <div class="form-group">
+                      <label for="releaseDate">Ngày phát hành:</label>
+                      <input type="text" id="releaseDate" name="releaseDate">
+                      <small>Chọn ngày phát hành hoặc để trống.</small>
+                  </div>
+                  <div class="form-group">
+                      <label for="trailerLink">Link trailer:</label>
+                      <input type="url" id="trailerLink" name="trailerLink" placeholder="Ví dụ: https://www.youtube.com/watch?v=abc123">
+                      <small>Nhập URL trailer hoặc để trống.</small>
+                  </div>
+                  <div class="form-group">
+                      <label for="genres">Thể loại:</label>
+                      <input type="text" id="genres" name="genres" placeholder="Ví dụ: Hành động, Viễn tưởng, Phiêu lưu">
+                      <small>Nhập các thể loại, phân cách bằng dấu phẩy hoặc để trống.</small>
+                  </div>
+                  <div class="form-group">
+                      <label for="poster">Poster (URL):</label>
+                      <input type="url" id="poster" name="poster" placeholder="Ví dụ: https://image.tmdb.org/t/p/w500/pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg">
+                      <small>Nhập URL ảnh poster hoặc để trống.</small>
+                  </div>
+                  <div class="form-group">
+                      <label for="backdrops">Ảnh nền (URLs):</label>
+                      <textarea id="backdrops" name="backdrops" rows="4" placeholder="Ví dụ: https://example.com/image1.jpg, https://example.com/image2.jpg"></textarea>
+                      <small>Nhập các URL ảnh nền, phân cách bằng dấu phẩy hoặc để trống.</small>
+                  </div>
+                  <div class="form-group">
+                      <label for="movielink">Link phim:</label>
+                      <textarea id="movielink" name="movielink" rows="4" placeholder="Ví dụ: https://example.com/movie1.mp4, https://example.com/movie2.mp4"></textarea>
+                      <small>Nhập các URL phim</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="allactors">Diễn viên:</label>
+                    <input type="text" id="allactors" name="allactors" placeholder="Ví dụ: Robert Downey Jr">
+                    <small>Nhập danh sách diễn viên.</small>
+                  </div>
+                  <div class="form-actions">
+                      <button class="submit-btn" id="submit-movie">Lưu</button>
+                      <button type="button" class="cancel-btn">Hủy</button>
+                  </div>
+              </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal Chỉnh Sửa Phim -->
+    <div class="modal" id="editMovieModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chỉnh Sửa Phim</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editMovieForm">
+                    <input type="hidden" id="editMovieId" name="editMovieId">
+                    <div class="form-group">
+                        <label for="editImdbId">IMDB ID:</label>
+                        <input type="text" id="editImdbId" name="editImdbId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTitle">Tên phim:</label>
+                        <input type="text" id="editTitle" name="editTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editReleaseDate">Ngày phát hành:</label>
+                        <input type="text" id="editReleaseDate" name="editReleaseDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTrailerLink">Link trailer:</label>
+                        <input type="url" id="editTrailerLink" name="editTrailerLink" placeholder="https://youtube.com/..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editGenres">Thể loại:</label>
+                        <input type="text" id="editGenres" name="editGenres" placeholder="Action, Drama, ..." required>
+                        <small>Nhập các thể loại</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPoster">Poster (URL):</label>
+                        <input type="url" id="editPoster" name="editPoster" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editBackdrops">Ảnh nền (URLs):</label>
+                        <textarea id="editBackdrops" name="editBackdrops" rows="3" placeholder="https://example.com/image1.jpg"></textarea>
+                        <small>Nhập các URL ảnh nền</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMovielink">Link phim:</label>
+                        <textarea id="editMovielink" name="editMovielink" rows="3" placeholder="https://example.com/movie1.mp4"></textarea>
+                        <small>Nhập các URL phim</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="editActors">Diễn viên:</label>
+                        <textarea type="text" id="editActors" name="editActors" rows="3" placeholder="Robert Downey Jr., Chris Evans"></textarea>
+                        <small>Nhập danh sách diễn viên</small>
+                    </div>
+                    <div class="form-actions">
+                        <button id="submit-edit" class="submit-btn">Cập nhật</button>
+                        <button type="button" class="cancel-btn">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Xác Nhận Xóa Phim -->
+    <div class="modal" id="deleteMovieModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Xác Nhận Xóa</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa phim <span id="deleteMovieName"></span>?</p>
+                <p>Hành động này không thể hoàn tác.</p>
+                <input type="hidden" id="deleteMovieId">
+                <div class="form-actions">
+                    <button id="confirmDeleteBtn" class="submit-btn delete-btn">Xóa</button>
+                    <button id="cancelDeleteBtn" class="cancel-btn">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+</html>

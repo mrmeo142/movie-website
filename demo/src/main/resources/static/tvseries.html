@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Movies</title>
+  <link rel="stylesheet" href="css/n.css">
+  <link rel="stylesheet" href="css/style.css" />
+
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="http://localhost:8081/"><img src="images/logo.svg" alt="" /></a>
+      </div>
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="search">
+        <span class="search-icon right"><i class="fas fa-magnifying-glass"></i></span>
+    </div>
+      <ul class="nav-list">
+        <div class="logo">
+          <a href=""><img src="images/logo.svg" alt=""></a>
+          <button class="close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <li class="home"><a href="http://localhost:8081/">home</a></li>
+        <li><a href="http://localhost:8081/movies.html">movie</a></li>
+        <li><a href="">tv series</a></li>
+        <button id="signinBtn" class="btn">SIGN IN</button>
+      </ul>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </nav>
+  </header>
+  <!-- Modal chứa form login -->
+  <div class="modal" id="loginModal">
+    <div class="login-container">
+        <div class="close-btn" onclick="closeModal('loginModal')">✖</div>
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <input type="text" id="login-email" placeholder="Username" required>
+                <span class="icon">✉</span>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="Password" required>
+                <span class="icon">🔒</span>
+            </div>
+            <div class="options">
+                <label>
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+  </div>
+  <main>
+    <!-- Bộ lọc -->
+    <div class="filter-container">
+      <select id="genre-filter">
+        <option value="">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <!-- Add more genres as needed -->
+      </select>
+
+      <select id="year-filter">
+        <option value="">All Years</option>
+        <!-- Năm sẽ được sinh tự động bằng JS -->
+      </select>
+    </div>
+
+    <!-- Danh sách phim -->
+    <div class="movie-grid" id="movies-container"></div>
+    <div class="pagination" id="pagination"></div>
+  </main>
+  <footer>
+    <div class="main">
+      <div class="footer-top">
+        <nav>
+          <div class="logo">
+            <img src="images/logo.svg" alt="" />
+          </div>
+          <ul class="list">
+            <li><a href="http://localhost:8081/">home</a></li>
+            <li><a href="http://localhost:8081/movies.html">movie</a></li>
+            <li><a href="http://localhost:8081/tvseries.html">tv series</a></li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="links">
+          <div class="text-links">
+            <a href="">faq</a>
+            <a href="">help center</a>
+            <a href="">terms of use</a>
+            <a href="">privacy</a>
+          </div>
+          <div class="social-links">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href=""><i class="fa-brands fa-pinterest"></i></a>
+            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>&#169; 2025 <a href="">Edit by mrmeo</a>. All Rights Reserved</p>
+        </div>
+        <div class="img">
+          <img src="images/footer-bottom-img.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/tvseries.js"></script>
+  <script src="js/navbar.js"></script>
+</body>
+</html>
+

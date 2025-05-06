@@ -1,0 +1,107 @@
+body {
+  background-color: #0d0c1d;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  margin-top: 90px;
+}
+
+header h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Bộ lọc */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-container select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+/* Danh sách phim với Grid */
+#movies-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+/* Thẻ phim */
+.movie-card {
+  background-color: #1c1c2b;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.movie-card h4 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+  color: white;
+}
+
+.movie-card span {
+  color: #ccc;
+  font-size: 14px;
+}
+
+
+@media (max-width: 1024px) {
+  #movies-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  #movies-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  #movies-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phân trang */
+.pagination {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #eee;
+}
+
+.pagination button.active {
+  background-color: #ffb700;
+  color: #000;
+  font-weight: bold;
+}
