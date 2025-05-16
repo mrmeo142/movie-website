@@ -26,10 +26,6 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    public Admin createAdmin(Admin admin) {
-        return adminRepository.save(admin);
-    }
-
     public boolean deleteAdminByName(String name) {
         Optional<Admin> actor = adminRepository.findByUsername(name);
         if (actor.isPresent()) {
